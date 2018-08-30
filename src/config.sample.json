@@ -1,0 +1,10 @@
+{
+  "trello": {
+    "apiKey": "enter-key",
+    "token": "enter-token",
+    "calendarListId": "trello-list-id"
+  },
+  "calendar": {
+    "kidWeekKey": 1
+  }
+}
