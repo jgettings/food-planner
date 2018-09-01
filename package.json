@@ -5,8 +5,10 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "^0.1.2",
+    "classnames": "^2.2.6",
     "cross-fetch": "^2.2.2",
     "moment": "^2.22.2",
+    "node-sass-chokidar": "^1.3.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",
@@ -18,8 +20,10 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
     "test": "run-s test:**",
     "eject": "react-scripts eject",
     "test:lint:js": "eslint --ext=js --ext=jsx .",
@@ -31,7 +35,9 @@
         "git add"
       ]
     },
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
@@ -41,6 +47,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "npm-run-all": "^4.1.3"
   }
 }

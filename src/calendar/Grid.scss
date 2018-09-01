@@ -1,0 +1,16 @@
+$width-break: 700px;
+
+.grid {
+  margin: 0 25px;
+
+  .calendar-label {
+    width: 14%;
+    float: left;
+    fontWeight: bold;
+    display: none;
+
+    @media screen and (min-width: $width-break) {
+      display: block;
+    }
+  }
+}

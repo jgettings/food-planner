@@ -10,8 +10,6 @@ This food planner is something I've wanted to make for awhile. All of the free o
 
 ## TODO List (somewhat prioritized):
 
-* Display the current week (or longer) from Trello
-* Make trello boards and lists configurable
 * Pull in new recipes automatically into the "New Things" list
   * Scrape skinnytaste.com
   * Scrape other sites
@@ -29,3 +27,5 @@ This food planner is something I've wanted to make for awhile. All of the free o
 * Drag from chosen list to current week display
 * Generate a shopping list and put that in a trello card
 * Display the shopping list trello card
+* Pull kid days/weekends/etc (and probably more events) from a google calendar
+  * Configure what colors/icons show per type of event
