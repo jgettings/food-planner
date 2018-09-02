@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
-import ImportForm from './importForm';
+import ImportForm from './import';
 
 const FoodNav = () => (
   <Navbar fluid>

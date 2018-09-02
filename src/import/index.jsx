@@ -8,7 +8,7 @@ import {
   Form as BsForm,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { importUrl } from './actions';
+import { importUrl } from '../actions';
 
 class Form extends Component {
   constructor() {
@@ -17,7 +17,8 @@ class Form extends Component {
     this.submit = this.submit.bind(this);
   }
 
-  submit() {
+  submit(e) {
+    e.preventDefault();
     const { importUrlFn } = this.props;
     const { value } = this.state;
     importUrlFn(value);
@@ -36,6 +37,7 @@ class Form extends Component {
             <InputGroup.Button>
               <Button type="submit">Import Recipe</Button>
             </InputGroup.Button>
+            [Into "New Things" - make this a dropdown with a default!]
           </InputGroup>
         </FormGroup>
       </BsForm>

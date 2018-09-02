@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 export const importUrl = (state = {}, action) => {
   switch (action.type) {
     case 'IMPORT_URL': {
+      console.log(action.payload);
       return { urlToImport: action.payload };
     }
     default:
