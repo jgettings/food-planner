@@ -10,7 +10,7 @@ This food planner is something I've wanted to make for awhile. All of the free o
 
 ## TODO List (somewhat prioritized):
 
-* Pull in new recipes automatically into the "New Things" list
+* Import new recipes automatically into the "New Things" list
   * Scrape skinnytaste.com
   * Scrape other sites
   * From an image

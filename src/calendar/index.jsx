@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Grid from './Grid';
-import { getTrelloCalendar } from '../actions';
+import { getTrelloPlan } from '../actions';
 
 class Calendar extends Component {
   componentDidMount() {
@@ -19,6 +19,7 @@ class Calendar extends Component {
       <div style={{ textAlign: 'center' }}>
         {loading && <FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />}
         {!loading && <Grid />}
+        <div style={{ clear: 'both' }} />
       </div>
     );
   }
@@ -30,11 +31,11 @@ Calendar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loading: state.trello.loading,
+  loading: state.trello.loadingPlan,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCalendar: () => dispatch(getTrelloCalendar()),
+  getCalendar: () => dispatch(getTrelloPlan()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

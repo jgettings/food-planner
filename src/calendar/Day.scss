@@ -5,9 +5,12 @@ $width-break: 700px;
   float: left;
   background-image: '';
   background-size: cover;
+  background-position: center;
+  padding: 20px 0;
   width: 100%;
 
   @media screen and (min-width: $width-break) {
+    padding: 0;
     width: 14%;
   }
 

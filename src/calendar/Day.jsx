@@ -63,13 +63,14 @@ Day.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  cards: state.trello.list
+  cards: state.trello.plan
     .filter((c) => {
       // Get only the cards that are due on this date
       const testDate = moment(c.due);
       const cardDateStart = moment(props.date).hours(0).minutes(0).seconds(0);
       const cardDateEnd = moment(props.date).hours(23).minutes(59).seconds(59);
-      return testDate >= cardDateStart && testDate <= cardDateEnd;
+      const isShoppingList = c.labels.find(l => l.name === 'Shopping List');
+      return testDate >= cardDateStart && testDate <= cardDateEnd && !isShoppingList;
     })
     .sort((a, b) => (moment(a.due).isAfter(b.due))),
 });

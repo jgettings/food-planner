@@ -3,9 +3,12 @@
   float: left;
   background-image: '';
   background-size: cover;
+  background-position: center;
+  padding: 20px 0;
   width: 100%; }
   @media screen and (min-width: 700px) {
     .day {
+      padding: 0;
       width: 14%; } }
   .day.empty {
     display: none; }

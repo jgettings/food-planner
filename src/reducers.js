@@ -12,16 +12,25 @@ export const importUrl = (state = {}, action) => {
 
 
 const initialTrelloState = {
-  list: [],
-  loading: false,
+  plan: [],
+  loadingPlan: false,
+  loadingShoppingList: false,
+  triedLoadingShoppingList: false,
+  shoppingList: [],
 };
 export const trello = (state = initialTrelloState, action) => {
   switch (action.type) {
-    case 'LOADING_TRELLO': {
-      return { ...state, loading: true };
+    case 'LOADING_TRELLO_PLAN': {
+      return { ...state, loadingPlan: true };
     }
-    case 'LOADED_TRELLO': {
-      return { ...state, loading: false, list: action.payload };
+    case 'LOADED_TRELLO_PLAN': {
+      return { ...state, loadingPlan: false, plan: action.payload };
+    }
+    case 'LOADING_TRELLO_SHOPPING_LIST': {
+      return { ...state, loadingShoppingList: true, triedLoadingShoppingList: false };
+    }
+    case 'LOADED_TRELLO_SHOPPING_LIST': {
+      return { ...state, loadingShoppingList: false, shoppingList: action.payload, triedLoadingShoppingList: true };
     }
     default:
       return state;
