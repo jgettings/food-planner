@@ -5,7 +5,9 @@ import rootReducer from './reducers';
 export default function configureStore() {
   return createStore(
     rootReducer,
+    /* eslint-disable no-underscore-dangle */
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    /* eslint-enable no-underscore-dangle */
+    applyMiddleware(thunk),
   );
 }

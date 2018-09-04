@@ -59,7 +59,12 @@ const Day = ({ date, cards }) => {
 
 Day.propTypes = {
   date: PropTypes.string.isRequired,
-  cards: PropTypes.array.isRequired,
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    attachments: PropTypes.array,
+  })).isRequired,
 };
 
 const mapStateToProps = (state, props) => ({

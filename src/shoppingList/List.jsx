@@ -19,7 +19,7 @@ List.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       state: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };

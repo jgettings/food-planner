@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux';
 
-export const importUrl = (state = {}, action) => {
+
+const initialImportState = {
+  recipeToImport: '',
+};
+export const importer = (state = initialImportState, action) => {
   switch (action.type) {
-    case 'IMPORT_URL': {
-      console.log(action.payload);
-      return { urlToImport: action.payload };
+    case 'IMPORT_RECIPE': {
+      return { recipeToImport: action.payload };
+    }
+    case 'CANCEL_IMPORT': {
+      return { recipeToImport: '' };
     }
     default:
       return state;
@@ -31,7 +37,12 @@ export const trello = (state = initialTrelloState, action) => {
       return { ...state, loadingShoppingList: true, triedLoadingShoppingList: false };
     }
     case 'LOADED_TRELLO_SHOPPING_LIST': {
-      return { ...state, loadingShoppingList: false, shoppingList: action.payload, triedLoadingShoppingList: true };
+      return {
+        ...state,
+        loadingShoppingList: false,
+        shoppingList: action.payload,
+        triedLoadingShoppingList: true,
+      };
     }
     default:
       return state;
@@ -40,6 +51,6 @@ export const trello = (state = initialTrelloState, action) => {
 
 
 export default combineReducers({
-  importUrl,
+  importer,
   trello,
 });

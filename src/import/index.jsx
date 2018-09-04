@@ -8,7 +8,8 @@ import {
   Form as BsForm,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { importUrl } from '../actions';
+import { importRecipe } from '../actions';
+import Modal from './Modal';
 
 class Form extends Component {
   constructor() {
@@ -19,9 +20,9 @@ class Form extends Component {
 
   submit(e) {
     e.preventDefault();
-    const { importUrlFn } = this.props;
+    const { importFn } = this.props;
     const { value } = this.state;
-    importUrlFn(value);
+    importFn(value);
   }
 
   render() {
@@ -31,29 +32,35 @@ class Form extends Component {
           <InputGroup>
             <FormControl
               type="text"
-              placeholder="Recipe URL"
+              placeholder="Paste Recipe Here"
               onChange={e => this.setState({ value: e.target.value })}
             />
             <InputGroup.Button>
               <Button type="submit">Import Recipe</Button>
             </InputGroup.Button>
-            [Into "New Things" - make this a dropdown with a default!]
           </InputGroup>
         </FormGroup>
+        <Modal />
       </BsForm>
     );
   }
 }
 
 Form.propTypes = {
-  importUrlFn: PropTypes.func.isRequired,
+  importFn: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  importUrlFn: value => dispatch(importUrl(value)),
+  importFn: value => dispatch(importRecipe(value)),
 });
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Form);
+
+
+/*
+Add a tooltip of how to do this
+Grab the element of the recipe (or potentially the entire page html) and paste that in!
+ */

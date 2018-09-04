@@ -2,7 +2,8 @@ import fetch from 'cross-fetch';
 import config from './config.json';
 
 
-export const importUrl = payload => ({ type: 'IMPORT_URL', payload });
+export const importRecipe = payload => ({ type: 'IMPORT_RECIPE', payload });
+export const cancelImport = () => ({ type: 'CANCEL_IMPORT' });
 
 
 export const loadingTrelloPlan = () => ({ type: 'LOADING_TRELLO_PLAN' });
@@ -19,7 +20,7 @@ export const getTrelloPlan = () => (dispatch) => {
     .then(cards => dispatch(loadedTrelloPlan(cards)));
 };
 
-export const loadingTrelloShoppingList = () => ({ type: 'LOADING_TRELLO_SHOPPING_LIST '});
+export const loadingTrelloShoppingList = () => ({ type: 'LOADING_TRELLO_SHOPPING_LIST ' });
 
 export const loadedTrelloShoppingList = payload => ({ type: 'LOADED_TRELLO_SHOPPING_LIST', payload });
 
@@ -31,10 +32,4 @@ export const getTrelloShoppingList = checklistId => (dispatch) => {
   return fetch(`https://api.trello.com/1/checklists/${checklistId}?fields=all&key=${apiKey}&token=${token}`)
     .then(response => response.json())
     .then(list => dispatch(loadedTrelloShoppingList(list.checkItems)));
-};
-
-
-export default {
-  importUrl,
-  getTrelloPlan,
 };

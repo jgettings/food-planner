@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "^0.1.2",
+    "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.6",
     "cross-fetch": "^2.2.2",
     "moment": "^2.22.2",
@@ -26,7 +27,7 @@
     "build": "npm-run-all build-css build-js",
     "test": "run-s test:**",
     "eject": "react-scripts eject",
-    "test:lint:js": "eslint --ext=js --ext=jsx .",
+    "test:lint:js": "eslint --fix --ext=js --ext=jsx .",
     "test:lint": "run-s test:lint:**",
     "test:unit": "react-scripts test --env=jsdom",
     "lint-staged": {
