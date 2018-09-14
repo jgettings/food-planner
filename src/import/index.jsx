@@ -8,14 +8,17 @@ import {
   Form as BsForm,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { importRecipe } from '../actions';
+import { importRecipe } from './actions';
 import Modal from './Modal';
+import enchiladas from './example.html';
+
 
 class Form extends Component {
   constructor() {
     super();
     this.state = { value: '' };
     this.submit = this.submit.bind(this);
+    this.test = this.test.bind(this);
   }
 
   submit(e) {
@@ -23,6 +26,12 @@ class Form extends Component {
     const { importFn } = this.props;
     const { value } = this.state;
     importFn(value);
+  }
+
+  test(e) {
+    e.preventDefault();
+    const { importFn } = this.props;
+    importFn(enchiladas);
   }
 
   render() {
@@ -38,6 +47,9 @@ class Form extends Component {
             <InputGroup.Button>
               <Button type="submit">Import Recipe</Button>
             </InputGroup.Button>
+            <InputGroup.Button>
+              <Button type="button" onClick={this.test}>Test Import</Button>
+            </InputGroup.Button>
           </InputGroup>
         </FormGroup>
         <Modal />
@@ -45,6 +57,9 @@ class Form extends Component {
     );
   }
 }
+
+// TODO Create recipe from empty
+// TODO Save recipe to trello
 
 Form.propTypes = {
   importFn: PropTypes.func.isRequired,

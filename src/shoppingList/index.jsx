@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Panel } from 'react-bootstrap';
 import List from './List';
-import { getTrelloShoppingList } from '../actions';
+import getTrelloShoppingList from './actions';
 
 class ShoppingList extends Component {
   constructor() {
@@ -63,10 +63,10 @@ ShoppingList.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  loadingPlan: state.trello.loadingPlan,
-  loadingShoppingList: state.trello.loadingShoppingList,
-  triedLoadingShoppingList: state.trello.triedLoadingShoppingList,
-  card: state.trello.plan.find(c => c.labels.length && c.labels.find(l => l.name === 'Shopping List')),
+  loadingPlan: state.plan.loading,
+  loadingShoppingList: state.shoppingList.loading,
+  triedLoadingShoppingList: state.shoppingList.triedLoading,
+  card: state.plan.cards.find(c => c.labels.length && c.labels.find(l => l.name === 'Shopping List')),
 });
 
 const mapDispatchToProps = dispatch => ({

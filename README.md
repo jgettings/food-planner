@@ -10,6 +10,7 @@ This food planner is something I've wanted to make for awhile. All of the free o
 
 ## TODO List (somewhat prioritized):
 
+* Update react
 * Import new recipes automatically into the "New Things" list
   * Save all the bits:
     * Url

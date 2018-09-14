@@ -68,7 +68,7 @@ Day.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  cards: state.trello.plan
+  cards: state.plan.cards
     .filter((c) => {
       // Get only the cards that are due on this date
       const testDate = moment(c.due);

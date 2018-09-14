@@ -2,7 +2,9 @@
   "trello": {
     "apiKey": "enter-key",
     "token": "enter-token",
-    "calendarListId": "trello-list-id"
+    "calendarListId": "trello-list-id",
+    "recipeBoardId": "trello-board-id",
+    "defaultNewRecipeListId": ""
   },
   "calendar": {
     "kidWeekKey": 1

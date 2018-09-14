@@ -25,7 +25,7 @@ List.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  items: state.trello.shoppingList,
+  items: state.shoppingList.list,
 });
 
 export default connect(mapStateToProps)(List);

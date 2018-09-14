@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal as BsModal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { cancelImport } from '../actions';
+import { cancelImport } from './actions';
 import Form from './Form';
 import parser from './parser';
 
 const Modal = ({ open, rawRecipe, cancel }) => {
-  parser(rawRecipe);
+  if (!rawRecipe || rawRecipe === '') {
+    return <div />;
+  }
+
+  const recipe = parser(rawRecipe);
 
   return (
     <BsModal show={open}>
@@ -16,12 +20,12 @@ const Modal = ({ open, rawRecipe, cancel }) => {
       </BsModal.Header>
 
       <BsModal.Body>
-        <Form />
+        <Form {...recipe} />
       </BsModal.Body>
 
       <BsModal.Footer>
         <Button onClick={cancel}>Cancel</Button>
-        <Button bsStyle="primary">Save</Button>
+        <Button bsStyle="primary">Import</Button>
       </BsModal.Footer>
     </BsModal>
   );

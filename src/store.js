@@ -1,10 +1,22 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import trelloBoardLists from './listSelector/reducers';
+import importer from './import/reducers';
+import shoppingList from './shoppingList/reducers';
+import plan from './calendar/reducers';
+
+
+const reducers = combineReducers({
+  trelloBoardLists,
+  importer,
+  shoppingList,
+  plan,
+});
+
 
 export default function configureStore() {
   return createStore(
-    rootReducer,
+    reducers,
     /* eslint-disable no-underscore-dangle */
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     /* eslint-enable no-underscore-dangle */
