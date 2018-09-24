@@ -1,0 +1,19 @@
+@import '../variables.scss';
+
+.kids {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
+
+  @media screen and (min-width: $width-calendar-break) {
+    top: auto;
+    bottom: 0;
+  }
+
+  .badge {
+    background-color: $brand-warning;
+    color: black;
+  }
+
+}

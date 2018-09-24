@@ -1,0 +1,12 @@
+.kids {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px; }
+  @media screen and (min-width: 700px) {
+    .kids {
+      top: auto;
+      bottom: 0; } }
+  .kids .badge {
+    background-color: #f89406;
+    color: black; }

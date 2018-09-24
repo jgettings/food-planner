@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Badge } from 'react-bootstrap';
+import convert from 'color-convert';
 import classnames from 'classnames';
 import weekdays from './weekdays';
 import './Day.css';
@@ -16,9 +17,14 @@ const Day = ({ date, cards }) => {
 
   const firstCard = cards.find(c => c && c.attachments && c.attachments.length);
   const background = firstCard && firstCard.attachments[0];
-  const overlayColor = firstCard && firstCard.attachments[0].edgeColor;
+  const backgroundColor = firstCard && firstCard.attachments[0].edgeColor;
+
+  const backgroundHSL = convert.hex.hsl(backgroundColor);
+  const backgroundLightness = backgroundHSL ? backgroundHSL[2] : 0;
+  const color = backgroundLightness > 70 ? 'black' : 'white';
 
   const empty = !cards.length;
+
 
   // todo colors per meal (or maybe only for today?)
   // todo hover for labels (slow cooker, etc)
@@ -43,7 +49,7 @@ const Day = ({ date, cards }) => {
             <a
               key={c.id}
               href={c.url}
-              style={{ backgroundColor: overlayColor }}
+              style={{ backgroundColor, color }}
               className="card"
               target="_new"
             >
