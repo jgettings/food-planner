@@ -5,6 +5,7 @@ import { Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChild } from '@fortawesome/free-solid-svg-icons';
 import config from '../config.json';
+import './Kids.css';
 
 
 // todo pull from a calendar - more details and more customizations
@@ -28,15 +29,8 @@ const Kids = ({ date }) => {
   }
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        margin: 5,
-      }}
-    >
-      <Badge style={{ backgroundColor: 'greenyellow', color: 'black' }}>
+    <div className="kids">
+      <Badge>
         <FontAwesomeIcon icon={faChild} />
       </Badge>
     </div>

@@ -45,7 +45,7 @@ class Form extends Component {
               onChange={e => this.setState({ value: e.target.value })}
             />
             <InputGroup.Button>
-              <Button type="submit">Import Recipe</Button>
+              <Button bsStyle="success" type="submit">Import Recipe</Button>
             </InputGroup.Button>
             <InputGroup.Button>
               <Button type="button" onClick={this.test}>Test Import</Button>
