@@ -55,12 +55,12 @@ const Form = ({
       </Col>
     </FormGroup>
 
-    <FormGroup controlId="perServing">
+    <FormGroup controlId="amountPerServing">
       <Col sm={leftColumnSize}>
         <ControlLabel>Serving Size</ControlLabel>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="perServing" placeholder="Enter amount per serving" defaultValue={perServing} />
+        <FormControl type="text" id="amountPerServing" placeholder="Enter amount per serving" defaultValue={perServing} />
       </Col>
     </FormGroup>
 
