@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal as BsModal, Button, Form as BsForm } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { cancelImport } from './actions';
+import { cancelImport, addRecipe } from './actions';
 import Form from './Form';
 import parser from './parser';
 
@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
       .forEach((input) => {
         form[input.id] = input.value;
       });
-    console.log(form);
+    dispatch(addRecipe(form));
   },
 });
 

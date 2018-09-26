@@ -9,6 +9,12 @@ export default (state = initialImportState, action) => {
     case 'CANCEL_IMPORT': {
       return { recipeToImport: '' };
     }
+    case 'LOADING_RECIPE_IMPORT': {
+      return { loading: true };
+    }
+    case 'LOADED_RECIPE_IMPORT': {
+      return { loading: false, recipeToImport: '' };
+    }
     default:
       return state;
   }

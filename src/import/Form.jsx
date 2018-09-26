@@ -19,12 +19,12 @@ const Form = ({
   directions,
 }) => (
   <div>
-    <FormGroup controlId="title">
+    <FormGroup controlId="name">
       <Col sm={leftColumnSize}>
         <ControlLabel>Title</ControlLabel>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="title" placeholder="Enter title" defaultValue={title} />
+        <FormControl type="text" id="name" placeholder="Enter title" defaultValue={title} />
       </Col>
     </FormGroup>
 
