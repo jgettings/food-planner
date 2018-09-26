@@ -9,11 +9,16 @@ const loading = () => ({ type: 'LOADING_RECIPE_IMPORT' });
 // todo show loading spinner?
 const loaded = () => ({ type: 'LOADED_RECIPE_IMPORT' });
 
+const headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};
+
+const { apiKey: key, token, customFields } = config.trello;
+
 
 const addCustomFieldToCard = (fieldName, cardId, value) => {
-  const { apiKey, token, customFields } = config.trello;
-
-  const data = { key: apiKey, token, value: {} };
+  const data = { key, token, value: {} };
 
   const field = customFields[fieldName];
 
@@ -21,41 +26,51 @@ const addCustomFieldToCard = (fieldName, cardId, value) => {
 
   return fetch(
     `https://api.trello.com/1/card/${cardId}/customField/${field.id}/item`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    },
+    { method: 'PUT', headers, body: JSON.stringify(data) },
   );
 };
+
+const addItemToChecklist = (listId, name, pos) => fetch(
+  `https://api.trello.com/1/checklists/${listId}/checkItems`,
+  {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      key, token, name, pos,
+    }),
+  },
+);
+
+const addListToCard = (name, idCard, items) => fetch(
+  'https://api.trello.com/1/checklists',
+  {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      key, token, idCard, name,
+    }),
+  },
+)
+  .then(response => response.json())
+  .then(list => items.map((item, i) => addItemToChecklist(list.id, item, i)));
+
+// TODO check to make sure we don't already have something with this name!
 
 export const addRecipe = recipe => (dispatch) => {
   dispatch(loading());
 
-  const { apiKey, token } = config.trello;
-
-  const data = {
-    ...recipe,
-    key: apiKey,
-    token,
-  };
-
   return fetch('https://api.trello.com/1/cards', {
     method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    headers,
+    body: JSON.stringify({ ...recipe, key, token }),
   }).then(response => response.json())
     .then(card => Promise.all([
       addCustomFieldToCard('amountPerServing', card.id, recipe.amountPerServing),
       addCustomFieldToCard('source', card.id, recipe.source),
       addCustomFieldToCard('servings', card.id, recipe.servings),
       addCustomFieldToCard('totalMinutes', card.id, recipe.totalMinutes),
+      addListToCard('Directions', card.id, recipe.directions.split('\n')),
     ]))
+
     .then(() => dispatch(loaded()));
 };

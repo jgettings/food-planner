@@ -27,7 +27,7 @@ const Day = ({ date, cards }) => {
 
 
   // todo colors per meal (or maybe only for today?)
-  // todo hover for labels (slow cooker, etc)
+  // todo hover for labels (slow cooker, etc) https://atomiks.github.io/tippyjs/
 
   return (
     <div
