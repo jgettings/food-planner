@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import loadBoardLists from './actions';
+import Selector from './selector';
 
 class TrelloListSelect extends Component {
   componentDidMount() {
@@ -13,17 +13,13 @@ class TrelloListSelect extends Component {
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, list } = this.props;
     if (loading) {
       return (<FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />);
     }
 
     return (
-      <FormControl componentClass="select" defaultValue="">
-        <option value="" disabled>Choose a list in Trello to import into</option>
-        <option value="select">select</option>
-        <option value="other">...</option>
-      </FormControl>
+      <Selector lists={list} />
     );
   }
 }
@@ -31,10 +27,15 @@ class TrelloListSelect extends Component {
 TrelloListSelect.propTypes = {
   loading: PropTypes.bool.isRequired,
   loadLists: PropTypes.func.isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const mapStateToProps = state => ({
   loading: state.trelloBoardLists.loading,
+  list: state.trelloBoardLists.list,
 });
 
 const mapDispatchToProps = dispatch => ({

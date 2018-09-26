@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form as BsForm, FormGroup, ControlLabel, FormControl, Col,
+  FormGroup, ControlLabel, FormControl, Col
 } from 'react-bootstrap';
 import './Form.css';
 import IngredientsForm from './IngredientsForm';
@@ -18,7 +18,7 @@ const Form = ({
   ingredients,
   directions,
 }) => (
-  <BsForm horizontal className="recipeImportForm">
+  <div>
     <FormGroup controlId="title">
       <Col sm={leftColumnSize}>
         <ControlLabel>Title</ControlLabel>
@@ -28,7 +28,7 @@ const Form = ({
       </Col>
     </FormGroup>
 
-    <FormGroup controlId="intoList">
+    <FormGroup controlId="idList">
       <Col sm={leftColumnSize}>
         <ControlLabel>Import Into...</ControlLabel>
       </Col>
@@ -98,7 +98,7 @@ const Form = ({
         />
       </Col>
     </FormGroup>
-  </BsForm>
+  </div>
 );
 
 Form.propTypes = {
