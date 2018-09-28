@@ -56,11 +56,24 @@ const mapDispatchToProps = dispatch => ({
   importFn: (e) => {
     e.preventDefault();
 
-    const form = {};
-    Object.values(e.target)
-      .filter(input => input.id)
+    const ingredientsTitleKey = 'ingredients-title-';
+    const ingredientsListKey = 'ingredients-list-';
+
+    const form = { ingredients: [] };
+    const inputs = Object.values(e.target);
+    inputs.filter(input => input.id && input.id.indexOf('ingredients-') === -1)
       .forEach((input) => {
         form[input.id] = input.value;
+      });
+    inputs.filter(input => input.id && input.id.indexOf(ingredientsTitleKey) === 0)
+      .forEach((input) => {
+        const i = parseInt(input.id.substring(ingredientsTitleKey.length), 10);
+        form.ingredients[i] = { ...form.ingredients[i], title: input.value };
+      });
+    inputs.filter(input => input.id && input.id.indexOf(ingredientsListKey) === 0)
+      .forEach((input) => {
+        const i = parseInt(input.id.substring(ingredientsListKey.length), 10);
+        form.ingredients[i] = { ...form.ingredients[i], list: input.value.split('\n') };
       });
     dispatch(addRecipe(form));
   },

@@ -76,15 +76,12 @@ const Form = ({
     {/* TODO: image upload like trello does it */}
     {/* TODO: typeahead for labels */}
 
-    <FormGroup controlId="ingredients">
-      <Col sm={leftColumnSize}>
-        <ControlLabel>Ingredients</ControlLabel>
-      </Col>
-      <Col sm={rightColumnSize}>
-        <IngredientsForm ingredients={ingredients} />
-      </Col>
-    </FormGroup>
+    <hr />
+    <h3>Ingredients</h3>
+    <IngredientsForm ingredients={ingredients} />
 
+    <hr />
+    <h3>Directions</h3>
     <FormGroup controlId="directions">
       <Col sm={leftColumnSize}>
         <ControlLabel>Directions</ControlLabel>

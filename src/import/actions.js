@@ -9,10 +9,8 @@ const loading = () => ({ type: 'LOADING_RECIPE_IMPORT' });
 // todo show loading spinner?
 const loaded = () => ({ type: 'LOADED_RECIPE_IMPORT' });
 
-const headers = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-};
+
+const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
 
 const { apiKey: key, token, customFields } = config.trello;
 
@@ -41,13 +39,13 @@ const addItemToChecklist = (listId, name, pos) => fetch(
   },
 );
 
-const addListToCard = (name, idCard, items) => fetch(
+const addListToCard = (name, idCard, items, pos) => fetch(
   'https://api.trello.com/1/checklists',
   {
     method: 'POST',
     headers,
     body: JSON.stringify({
-      key, token, idCard, name,
+      key, token, idCard, name, pos,
     }),
   },
 )
@@ -69,7 +67,13 @@ export const addRecipe = recipe => (dispatch) => {
       addCustomFieldToCard('source', card.id, recipe.source),
       addCustomFieldToCard('servings', card.id, recipe.servings),
       addCustomFieldToCard('totalMinutes', card.id, recipe.totalMinutes),
-      addListToCard('Directions', card.id, recipe.directions.split('\n')),
+      ...recipe.ingredients.map((i, idx) => addListToCard(
+        i.title ? `Ingredients: ${i.title}` : 'Ingredients',
+        card.id,
+        i.list,
+        idx,
+      )),
+      addListToCard('Directions', card.id, recipe.directions.split('\n'), 'bottom'),
     ]))
 
     .then(() => dispatch(loaded()));
