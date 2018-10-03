@@ -50,9 +50,9 @@ const addListToCard = (name, idCard, items, pos) => fetch(
   },
 )
   .then(response => response.json())
-  .then(list => items.map((item, i) => addItemToChecklist(list.id, item, i)));
+  .then(list => items.map((item, i) => addItemToChecklist(list.id, item, i + 1)));
 
-// TODO check to make sure we don't already have something with this name!
+// TODO check to make sure we don't already have something with this name
 
 export const addRecipe = recipe => (dispatch) => {
   dispatch(loading());
@@ -70,10 +70,15 @@ export const addRecipe = recipe => (dispatch) => {
       ...recipe.ingredients.map((i, idx) => addListToCard(
         i.title ? `Ingredients: ${i.title}` : 'Ingredients',
         card.id,
-        i.list,
-        idx,
+        i.values,
+        idx + 1,
       )),
-      addListToCard('Directions', card.id, recipe.directions.split('\n'), 'bottom'),
+      ...recipe.directions.map((i, idx) => addListToCard(
+        i.title ? `Directions: ${i.title}` : 'Directions',
+        card.id,
+        i.values,
+        idx + recipe.ingredients.length + 1,
+      )),
     ]))
 
     .then(() => dispatch(loaded()));

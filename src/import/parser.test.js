@@ -1,5 +1,6 @@
 import parse from './parser';
 import enchiladas from './example.html';
+import thaiSalad from './example2.html';
 
 describe('plain recipe', () => {
   const recipe = '<h3>Yummy Foods</h3>'
@@ -22,12 +23,13 @@ describe('plain recipe', () => {
   });
 
   it('will return the directions', () => {
-    expect(parsed.directions).toEqual(['do some stuff', 'do other things']);
+    expect(parsed.directions[0].title).toEqual('');
+    expect(parsed.directions[0].values).toEqual(['do some stuff', 'do other things']);
   });
 
   it('will return the ingredients', () => {
     expect(parsed.ingredients[0].title).toEqual('');
-    expect(parsed.ingredients[0].list).toEqual(['1 cup sugar', '2 tbsp flour']);
+    expect(parsed.ingredients[0].values).toEqual(['1 cup sugar', '2 tbsp flour']);
   });
 });
 
@@ -60,9 +62,9 @@ describe('skinnytaste enchiladas', () => {
   });
 
   it('will have all of the directions', () => {
-    expect(parsed.directions.length).toEqual(7);
-    expect(parsed.directions[0].substring(0, 20)).toEqual('In a medium saucepan');
-    expect(parsed.directions.pop().substring(0, 20)).toEqual('Cover with aluminum ');
+    expect(parsed.directions[0].values.length).toEqual(7);
+    expect(parsed.directions[0].values[0].substring(0, 20)).toEqual('In a medium saucepan');
+    expect(parsed.directions[0].values.pop().substring(0, 20)).toEqual('Cover with aluminum ');
   });
 
   it('will have the image', () => {
@@ -93,10 +95,32 @@ describe('skinnytaste enchiladas', () => {
     });
 
     it('will include each list separately', () => {
-      expect(parsed.ingredients[0].list.length).toEqual(7);
-      expect(parsed.ingredients[1].list.length).toEqual(11);
-      expect(parsed.ingredients[2].list.length).toEqual(4);
+      expect(parsed.ingredients[0].values.length).toEqual(7);
+      expect(parsed.ingredients[1].values.length).toEqual(11);
+      expect(parsed.ingredients[2].values.length).toEqual(4);
     });
+  });
+});
+
+describe('skinnytaste thai salad', () => {
+  let parsed;
+  beforeEach(() => {
+    parsed = parse(thaiSalad);
+  });
+
+  it('will have 3 sets of directions', () => {
+    expect(parsed.directions.length).toEqual(3);
+  });
+
+  it('will set the titles of the directions', () => {
+    expect(parsed.directions[0].title).toEqual('Dressing');
+    expect(parsed.directions[1].title).toEqual('Shrimp');
+    expect(parsed.directions[2].title).toEqual('Salad');
+  });
+
+  it('will set the values for the directions', () => {
+    expect(parsed.directions[0].values[0].substring(0, 10)).toEqual('In a small');
+    expect(parsed.directions[1].values[2].substring(0, 10)).toEqual('Add the sh');
   });
 });
 

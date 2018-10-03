@@ -9,7 +9,7 @@ const titleCase = str => str.split(' ')
   .join(' ');
 
 // Strip and format ingredient titles
-const title = (titleString = '') => titleCase(titleString.replace(/For the/i, '').replace(/:/, '').trim());
+const title = (titleString = '') => titleCase(titleString.replace(/For (the)*/i, '').replace(/:/, '').trim());
 
 export default (recipe) => {
   const r = cheerio.load(recipe);
@@ -19,11 +19,13 @@ export default (recipe) => {
     ingredients:
       r('.ingredients ul').map((i, list) => ({
         title: title(r('.ingredients p').eq(i).text()),
-        list: r(list).find('li').map((j, li) => r(li).text()).get(),
+        values: r(list).find('li').map((j, li) => r(li).text()).get(),
       })).get(),
-    directions: r('.instructions li')
-      .map((i, li) => r(li).text().trim())
-      .get(),
+    directions:
+      r('.instructions ol').map((i, list) => ({
+        title: title(r('.instructions p').eq(i).text()),
+        values: r(list).find('li').map((j, li) => r(li).text()).get(),
+      })).get(),
     imageUrl: r('img').first().attr('src') || null,
     totalMinutes: minutes(r('[itemprop=totalTime]').attr('content')),
     servings: parseInt(r('.yield').text(), 10) || null,

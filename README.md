@@ -23,6 +23,7 @@ This food planner is something I've wanted to make for awhile. All of the free o
     * Picture
 * Store api keys and stuff somewhere so we can deploy this somewhere (local storage? some type of server config?)
 * Display chosen list from trello (list, filters, etc)
+* Add from chosen list to current week (w/ just a button first, just add it to the next empty day)
 * Drag from chosen list to current week display
 * Generate a shopping list and put that in a trello card
 * Display the shopping list trello card

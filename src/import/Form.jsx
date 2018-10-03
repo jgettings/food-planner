@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FormGroup, ControlLabel, FormControl, Col
+  FormGroup, ControlLabel, FormControl, Col,
 } from 'react-bootstrap';
 import './Form.css';
-import IngredientsForm from './IngredientsForm';
 import TrelloListSelect from '../listSelector';
+import ListOfLists from './ListOfLists';
 
 const leftColumnSize = 3;
 const rightColumnSize = 9;
@@ -75,26 +75,18 @@ const Form = ({
 
     {/* TODO: image upload like trello does it */}
     {/* TODO: typeahead for labels */}
+    {/* TODO: description */}
 
     <hr />
-    <h3>Ingredients</h3>
-    <IngredientsForm ingredients={ingredients} />
+    <ListOfLists controlId="ingredients" title="Ingredients">
+      {ingredients}
+    </ListOfLists>
 
     <hr />
     <h3>Directions</h3>
-    <FormGroup controlId="directions">
-      <Col sm={leftColumnSize}>
-        <ControlLabel>Directions</ControlLabel>
-      </Col>
-      <Col sm={rightColumnSize}>
-        <FormControl
-          componentClass="textarea"
-          placeholder="(newline for each separate direction)"
-          defaultValue={directions.reduce((value, item) => `${value}\n${item}`)}
-          rows={directions.length}
-        />
-      </Col>
-    </FormGroup>
+    <ListOfLists controlId="directions" title="Directions">
+      {directions}
+    </ListOfLists>
   </div>
 );
 
@@ -105,9 +97,12 @@ Form.propTypes = {
   perServing: PropTypes.string,
   ingredients: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
-    list: PropTypes.array,
+    values: PropTypes.array,
   })).isRequired,
-  directions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  directions: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    values: PropTypes.array,
+  })).isRequired,
 };
 
 Form.defaultProps = {

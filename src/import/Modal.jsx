@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { cancelImport, addRecipe } from './actions';
 import Form from './Form';
 import parser from './parser';
+import serializeForm from './formSerializer';
 
 const Modal = ({
   open, rawRecipe, cancel, importFn,
@@ -55,27 +56,9 @@ const mapDispatchToProps = dispatch => ({
   cancel: () => dispatch(cancelImport()),
   importFn: (e) => {
     e.preventDefault();
-
-    const ingredientsTitleKey = 'ingredients-title-';
-    const ingredientsListKey = 'ingredients-list-';
-
-    const form = { ingredients: [] };
-    const inputs = Object.values(e.target);
-    inputs.filter(input => input.id && input.id.indexOf('ingredients-') === -1)
-      .forEach((input) => {
-        form[input.id] = input.value;
-      });
-    inputs.filter(input => input.id && input.id.indexOf(ingredientsTitleKey) === 0)
-      .forEach((input) => {
-        const i = parseInt(input.id.substring(ingredientsTitleKey.length), 10);
-        form.ingredients[i] = { ...form.ingredients[i], title: input.value };
-      });
-    inputs.filter(input => input.id && input.id.indexOf(ingredientsListKey) === 0)
-      .forEach((input) => {
-        const i = parseInt(input.id.substring(ingredientsListKey.length), 10);
-        form.ingredients[i] = { ...form.ingredients[i], list: input.value.split('\n') };
-      });
-    dispatch(addRecipe(form));
+    const recipe = serializeForm(e.target);
+    console.log(recipe);
+    dispatch(addRecipe(recipe));
   },
 });
 

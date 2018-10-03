@@ -25,7 +25,7 @@ class Form extends Component {
     e.preventDefault();
     const { importFn } = this.props;
     const { value } = this.state;
-    importFn(value);
+    importFn(value || ' ');
   }
 
   test(e) {
@@ -41,7 +41,7 @@ class Form extends Component {
           <InputGroup>
             <FormControl
               type="text"
-              placeholder="Paste Recipe Here"
+              placeholder="Paste Recipe HTML Here or Hit Import to Enter Manually"
               onChange={e => this.setState({ value: e.target.value })}
             />
             <InputGroup.Button>
