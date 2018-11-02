@@ -29,3 +29,5 @@ This food planner is something I've wanted to make for awhile. All of the free o
 * Display the shopping list trello card
 * Pull kid days/weekends/etc (and probably more events) from a google calendar
   * Configure what colors/icons show per type of event
+* Track how long it's been since food was made, like for leftovers and knowing if food is still good
+* Display weather on the calendar
