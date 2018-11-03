@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import './Form.css';
 import TrelloListSelect from '../listSelector';
+import TrelloLabelSelect from '../labelSelector';
 import ListOfLists from './ListOfLists';
 
 const leftColumnSize = 3;
@@ -46,6 +47,17 @@ const Form = ({
       </Col>
     </FormGroup>
 
+    <FormGroup controlId="labels">
+      <Col sm={leftColumnSize}>
+        <ControlLabel>Labels</ControlLabel>
+      </Col>
+      <Col sm={rightColumnSize}>
+        <TrelloLabelSelect />
+      </Col>
+    </FormGroup>
+
+    <hr />
+
     <FormGroup controlId="servings">
       <Col sm={leftColumnSize}>
         <ControlLabel>Servings</ControlLabel>
@@ -74,7 +86,6 @@ const Form = ({
     </FormGroup>
 
     {/* TODO: image upload like trello does it */}
-    {/* TODO: typeahead for labels */}
     {/* TODO: description */}
 
     <hr />
@@ -83,7 +94,6 @@ const Form = ({
     </ListOfLists>
 
     <hr />
-    <h3>Directions</h3>
     <ListOfLists controlId="directions" title="Directions">
       {directions}
     </ListOfLists>

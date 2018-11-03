@@ -57,7 +57,6 @@ const mapDispatchToProps = dispatch => ({
   importFn: (e) => {
     e.preventDefault();
     const recipe = serializeForm(e.target);
-    console.log(recipe);
     dispatch(addRecipe(recipe));
   },
 });

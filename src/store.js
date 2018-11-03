@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import trelloBoardLists from './listSelector/reducers';
+import trelloBoardLabels from './labelSelector/reducers';
 import importer from './import/reducers';
 import shoppingList from './shoppingList/reducers';
 import plan from './calendar/reducers';
@@ -8,6 +9,7 @@ import plan from './calendar/reducers';
 
 const reducers = combineReducers({
   trelloBoardLists,
+  trelloBoardLabels,
   importer,
   shoppingList,
   plan,
