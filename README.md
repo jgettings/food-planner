@@ -18,16 +18,13 @@ The best way to grab the html to import is to right click inside of the recipe b
 
 ## TODO List (somewhat prioritized):
 
-* Import new recipes automatically into the "New Things" list
-  * Save all the bits:
-    * Picture
 * Update react
 * Move this list to github issues
+* Store api keys and stuff somewhere so we can deploy this somewhere (local storage? some type of server config?)
 * Generate a shopping list and put that in a trello card
 * Display the shopping list trello card
 * Automate labels from import html
 * Automate picture from import html
-* Store api keys and stuff somewhere so we can deploy this somewhere (local storage? some type of server config?)
 * Display chosen list from trello (list, filters, etc)
 * Add from chosen list to current week (w/ just a button first, just add it to the next empty day)
 * Drag from chosen list to current week display
