@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import FoodNav from './Navbar';
@@ -11,13 +11,13 @@ const App = () => (
     <div>
       <FoodNav />
       <Calendar />
-      <Grid fluid style={{ marginTop: 20 }}>
+      <Container fluid style={{ marginTop: 20 }}>
         <Row>
           <Col md={6}>
             <ShoppingList />
           </Col>
         </Row>
-      </Grid>
+      </Container>
     </div>
   </Provider>
 );

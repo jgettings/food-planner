@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormGroup,
-  FormControl,
-  InputGroup,
-  Button,
-  Form as BsForm,
-} from 'react-bootstrap';
+import { Button, Form as BsForm } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { importRecipe } from './actions';
 import Modal from './Modal';
@@ -36,22 +30,14 @@ class Form extends Component {
 
   render() {
     return (
-      <BsForm onSubmit={this.submit}>
-        <FormGroup>
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="Paste Recipe HTML Here or Hit Import to Enter Manually"
-              onChange={e => this.setState({ value: e.target.value })}
-            />
-            <InputGroup.Button>
-              <Button bsStyle="success" type="submit">Import Recipe</Button>
-            </InputGroup.Button>
-            <InputGroup.Button>
-              <Button type="button" onClick={this.test}>Test Import</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
+      <BsForm onSubmit={this.submit} inline>
+        <BsForm.Control
+          type="text"
+          placeholder="Paste Recipe HTML Here or Hit Import to Enter Manually"
+          onChange={e => this.setState({ value: e.target.value })}
+        />
+        <Button type="submit" variant="success">Import Recipe</Button>
+        <Button type="button" onClick={this.test}>Test Import</Button>
         <Modal />
       </BsForm>
     );

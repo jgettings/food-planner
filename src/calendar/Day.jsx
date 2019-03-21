@@ -37,7 +37,7 @@ const Day = ({ date, cards }) => {
       <div className="container">
         {past && <div className="past-overlay" />}
 
-        <Badge className="number">
+        <Badge pill className="number" variant="primary">
           <span className="extra">
             {`${weekdays[moment(date).day()]} `}
           </span>

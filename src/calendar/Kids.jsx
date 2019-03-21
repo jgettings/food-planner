@@ -30,7 +30,7 @@ const Kids = ({ date }) => {
 
   return (
     <div className="kids">
-      <Badge>
+      <Badge pill>
         <FontAwesomeIcon icon={faChild} />
       </Badge>
     </div>

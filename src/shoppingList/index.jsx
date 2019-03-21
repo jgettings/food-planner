@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Panel } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import List from './List';
 import getTrelloShoppingList from './actions';
 
@@ -38,12 +38,12 @@ class ShoppingList extends Component {
     const loading = loadingPlan || loadingShoppingList;
 
     return (
-      <Panel bsStyle="primary">
-        <Panel.Heading>Shopping List</Panel.Heading>
+      <Card>
+        <Card.Header>Shopping List</Card.Header>
 
         {loading && <FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />}
         {!loading && <List />}
-      </Panel>
+      </Card>
     );
   }
 }

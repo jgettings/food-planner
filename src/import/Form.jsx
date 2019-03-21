@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormGroup, ControlLabel, FormControl, Col,
-} from 'react-bootstrap';
+import { Form as BsForm, Col } from 'react-bootstrap';
 import './Form.css';
 import TrelloListSelect from '../listSelector';
 import TrelloLabelSelect from '../labelSelector';
@@ -20,70 +18,70 @@ const Form = ({
   directions,
 }) => (
   <div>
-    <FormGroup controlId="name">
+    <BsForm.Group controlId="name">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Title</ControlLabel>
+        <BsForm.Label>Title</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="name" placeholder="Enter title" defaultValue={title} />
+        <BsForm.Control type="text" id="name" placeholder="Enter title" defaultValue={title} />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
-    <FormGroup controlId="idList">
+    <BsForm.Group controlId="idList">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Import Into...</ControlLabel>
+        <BsForm.Label>Import Into...</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
         <TrelloListSelect />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
-    <FormGroup controlId="source">
+    <BsForm.Group controlId="source">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Source</ControlLabel>
+        <BsForm.Label>Source</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="source" placeholder="Enter source" />
+        <BsForm.Control type="text" id="source" placeholder="Enter source" />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
-    <FormGroup controlId="labels">
+    <BsForm.Group controlId="labels">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Labels</ControlLabel>
+        <BsForm.Label>Labels</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
         <TrelloLabelSelect />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
     <hr />
 
-    <FormGroup controlId="servings">
+    <BsForm.Group controlId="servings">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Servings</ControlLabel>
+        <BsForm.Label>Servings</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="servings" placeholder="Enter number of servings" defaultValue={servings} />
+        <BsForm.Control type="text" id="servings" placeholder="Enter number of servings" defaultValue={servings} />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
-    <FormGroup controlId="amountPerServing">
+    <BsForm.Group controlId="amountPerServing">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Serving Size</ControlLabel>
+        <BsForm.Label>Serving Size</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="amountPerServing" placeholder="Enter amount per serving" defaultValue={perServing} />
+        <BsForm.Control type="text" id="amountPerServing" placeholder="Enter amount per serving" defaultValue={perServing} />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
-    <FormGroup controlId="totalMinutes">
+    <BsForm.Group controlId="totalMinutes">
       <Col sm={leftColumnSize}>
-        <ControlLabel>Total Minutes</ControlLabel>
+        <BsForm.Label>Total Minutes</BsForm.Label>
       </Col>
       <Col sm={rightColumnSize}>
-        <FormControl type="text" id="totalMinutes" placeholder="How long does this take to cook?" defaultValue={totalMinutes} />
+        <BsForm.Control type="text" id="totalMinutes" placeholder="How long does this take to cook?" defaultValue={totalMinutes} />
       </Col>
-    </FormGroup>
+    </BsForm.Group>
 
     {/* TODO: image upload like trello does it */}
     {/* TODO: description */}
