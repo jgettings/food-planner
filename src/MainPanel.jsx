@@ -4,7 +4,7 @@ import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 const Main = ({ urlToImport }) => (
-  <Panel bsStyle="primary">
+  <Panel variant="primary">
     <Panel.Heading>
       <Panel.Title componentClass="h3">This is some main stuff.</Panel.Title>
     </Panel.Heading>

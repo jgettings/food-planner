@@ -5,35 +5,33 @@ import {
 } from 'react-bootstrap';
 
 const leftColumnSize = 3;
-const rightColumnSize = 9;
 
 const ListForm = ({
   title, values, controlId, removeFn,
 }) => (
-  <div>
-    <Row key={title}>
-      <Col sm={leftColumnSize}>
-        <FormControl
-          type="text"
-          id={`list-title-${controlId}`}
-          placeholder="Subtitle"
-          defaultValue={title}
-        />
-        <Button bsStyle="danger" bsSize="small" onClick={removeFn}>
-          Remove List
-        </Button>
-      </Col>
-      <Col sm={rightColumnSize}>
-        <FormControl
-          componentClass="textarea"
-          placeholder="(newline for each)"
-          id={`list-values-${controlId}`}
-          defaultValue={values.reduce((value, item) => `${value}\n${item}`, '').trim()}
-          rows={values.length}
-        />
-      </Col>
-    </Row>
-  </div>
+  <Row key={title}>
+    <Col sm={leftColumnSize}>
+      <FormControl
+        type="text"
+        id={`list-title-${controlId}`}
+        placeholder="Subtitle"
+        defaultValue={title}
+        size="sm"
+      />
+      <Button variant="danger" size="sm" onClick={removeFn}>
+        Remove List
+      </Button>
+    </Col>
+    <Col>
+      <FormControl
+        as="textarea"
+        placeholder="(newline for each)"
+        id={`list-values-${controlId}`}
+        defaultValue={values.reduce((value, item) => `${value}\n${item}`, '').trim()}
+        rows={values.length}
+      />
+    </Col>
+  </Row>
 );
 
 ListForm.propTypes = {

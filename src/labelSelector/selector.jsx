@@ -21,6 +21,7 @@ const trelloColors = {
 
 const Selector = ({ labels, onChange }) => (
   <Typeahead
+    id="labelSelector"
     multiple
     options={labels}
     labelKey="name"

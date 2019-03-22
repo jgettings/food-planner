@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form as BsForm } from 'react-bootstrap';
+import { Button, ButtonGroup, Form as BsForm } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { importRecipe } from './actions';
 import Modal from './Modal';
@@ -31,13 +31,16 @@ class Form extends Component {
   render() {
     return (
       <BsForm onSubmit={this.submit} inline>
-        <BsForm.Control
-          type="text"
-          placeholder="Paste Recipe HTML Here or Hit Import to Enter Manually"
-          onChange={e => this.setState({ value: e.target.value })}
-        />
-        <Button type="submit" variant="success">Import Recipe</Button>
-        <Button type="button" onClick={this.test}>Test Import</Button>
+        <ButtonGroup>
+          <BsForm.Control
+            type="text"
+            placeholder="Paste Recipe HTML Here or Hit Import to Enter Manually"
+            onChange={e => this.setState({ value: e.target.value })}
+            size="sm"
+          />
+          <Button type="submit" variant="success" size="sm">Import Recipe</Button>
+          <Button type="button" onClick={this.test} size="sm">Test Import</Button>
+        </ButtonGroup>
         <Modal />
       </BsForm>
     );

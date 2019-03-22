@@ -36,7 +36,7 @@ class ListOfLists extends Component {//= ({ title, children, controlId }) => (
         <h3>
           {title}
           {' '}
-          <Button bsStyle="success" bsSize="small" onClick={this.addList}>
+          <Button variant="success" size="sm" onClick={this.addList}>
             Add List
           </Button>
         </h3>

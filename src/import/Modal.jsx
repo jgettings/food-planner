@@ -17,13 +17,12 @@ const Modal = ({
   const recipe = parser(rawRecipe);
 
   return (
-    <BsModal show={open}>
+    <BsModal show={open} size="lg">
       <BsModal.Header>
         <BsModal.Title>Import Recipe</BsModal.Title>
       </BsModal.Header>
 
       <BsForm
-        horizontal
         className="recipeImportForm"
         onSubmit={importFn}
       >
@@ -33,7 +32,7 @@ const Modal = ({
 
         <BsModal.Footer>
           <Button onClick={cancel}>Cancel</Button>
-          <Button bsStyle="success" type="submit">Import</Button>
+          <Button variant="success" type="submit">Import</Button>
         </BsModal.Footer>
       </BsForm>
     </BsModal>

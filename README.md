@@ -21,6 +21,7 @@ The best way to grab the html to import is to right click inside of the recipe b
 * Update react
 * Move this list to github issues
 * Store api keys and stuff somewhere so we can deploy this somewhere (local storage? some type of server config?)
+* Error boundaries
 * Generate a shopping list and put that in a trello card
 * Display the shopping list trello card
 * Automate labels from import html
@@ -32,3 +33,4 @@ The best way to grab the html to import is to right click inside of the recipe b
   * Configure what colors/icons show per type of event
 * Track how long it's been since food was made, like for leftovers and knowing if food is still good
 * Display weather on the calendar
+* Slackbot

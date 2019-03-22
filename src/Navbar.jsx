@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap';
 import ImportForm from './import';
 
 const FoodNav = () => (
-  <Navbar expand="lg">
+  <Navbar expand="lg" variant="dark" bg="primary">
     <img
       src="chompy.gif"
       alt="chomp chomp chomp"

@@ -10,7 +10,7 @@ if (config.trello.defaultNewRecipeListId) {
 }
 
 const Selector = ({ lists }) => (
-  <FormControl componentClass="select" defaultValue={defaultValue}>
+  <FormControl as="select" defaultValue={defaultValue}>
     <option value="" disabled>Choose a list in Trello to import into</option>
 
     {lists.map(({ id, name }) => (
