@@ -15,22 +15,3 @@ The best way to grab the html to import is to right click inside of the recipe b
 ## How to use this with Trello
 (Put some info here and how to set it up, once we do the local storage thing or whatever)
 
-
-## TODO List (somewhat prioritized):
-
-* Update react
-* Move this list to github issues
-* Store api keys and stuff somewhere so we can deploy this somewhere (local storage? some type of server config?)
-* Error boundaries
-* Generate a shopping list and put that in a trello card
-* Display the shopping list trello card
-* Automate labels from import html
-* Automate picture from import html
-* Display chosen list from trello (list, filters, etc)
-* Add from chosen list to current week (w/ just a button first, just add it to the next empty day)
-* Drag from chosen list to current week display
-* Pull kid days/weekends/etc (and probably more events) from a google calendar
-  * Configure what colors/icons show per type of event
-* Track how long it's been since food was made, like for leftovers and knowing if food is still good
-* Display weather on the calendar
-* Slackbot
