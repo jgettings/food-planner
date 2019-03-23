@@ -22,7 +22,7 @@ const Form = ({
         <BsForm.Label>Title</BsForm.Label>
       </Col>
       <Col>
-        <BsForm.Control type="text" d="name" placeholder="Enter title" defaultValue={title} />
+        <BsForm.Control type="text" id="name" placeholder="Enter title" defaultValue={title} />
       </Col>
     </BsForm.Group>
 
