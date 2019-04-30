@@ -4,13 +4,18 @@ import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const List = ({ items }) => (
-  <ListGroup>
-    {items.map(i => (
-      <ListGroupItem key={i.id} disabled={i.state === 'complete'}>
-        {i.name}
-      </ListGroupItem>
-    ))}
-  </ListGroup>
+    <ListGroup>
+      {items.map(i => (
+        <ListGroupItem key={i.id} disabled={i.state === 'complete'}>
+          {i.name}
+        </ListGroupItem>
+      ))}
+      {items.length === 0 && 
+        <ListGroupItem disabled>
+          There are no items in your shopping list.
+        </ListGroupItem>
+      }
+    </ListGroup>
 );
 
 
@@ -21,11 +26,11 @@ List.propTypes = {
       state: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
-  ).isRequired,
+  ).isRequired
 };
 
 const mapStateToProps = state => ({
-  items: state.shoppingList.list,
+  items: state.shoppingList.list
 });
 
 export default connect(mapStateToProps)(List);

@@ -6,6 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Card } from 'react-bootstrap';
 import List from './List';
 import getTrelloShoppingList from './actions';
+import Error from '../Error';
 
 class ShoppingList extends Component {
   constructor() {
@@ -22,8 +23,8 @@ class ShoppingList extends Component {
   }
 
   tryLoadList() {
-    const { triedLoadingShoppingList } = this.props;
-    if (triedLoadingShoppingList) {
+    const { triedLoading } = this.props;
+    if (triedLoading) {
       return;
     }
 
@@ -34,15 +35,20 @@ class ShoppingList extends Component {
   }
 
   render() {
-    const { loadingPlan, loadingShoppingList } = this.props;
+    const { loadingPlan, loadingShoppingList, errorLoading } = this.props;
     const loading = loadingPlan || loadingShoppingList;
 
     return (
       <Card>
         <Card.Header>Shopping List</Card.Header>
 
-        {loading && <FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />}
-        {!loading && <List />}
+        {loading &&
+          <Card.Body style={{ textAlign: "center" }}>
+            <FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />
+          </Card.Body>
+        }
+        {!loading && !errorLoading && <List />}
+        {errorLoading && <Error message="We could not load the shopping list."/>}
       </Card>
     );
   }
@@ -51,7 +57,8 @@ class ShoppingList extends Component {
 ShoppingList.propTypes = {
   loadingPlan: PropTypes.bool.isRequired,
   loadingShoppingList: PropTypes.bool.isRequired,
-  triedLoadingShoppingList: PropTypes.bool.isRequired,
+  triedLoading: PropTypes.bool.isRequired,
+  errorLoading: PropTypes.bool.isRequired,
   card: PropTypes.shape({
     idChecklists: PropTypes.array.isRequired,
   }),
@@ -65,7 +72,8 @@ ShoppingList.defaultProps = {
 const mapStateToProps = state => ({
   loadingPlan: state.plan.loading,
   loadingShoppingList: state.shoppingList.loading,
-  triedLoadingShoppingList: state.shoppingList.triedLoading,
+  triedLoading: state.shoppingList.triedLoading,
+  errorLoading: state.shoppingList.errorLoading,
   card: state.plan.cards.find(c => c.labels.length && c.labels.find(l => l.name === 'Shopping List')),
 });
 

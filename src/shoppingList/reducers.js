@@ -1,6 +1,7 @@
 const initialState = {
   loading: false,
   triedLoading: false,
+  errorLoading: false,
   list: [],
 };
 
@@ -16,6 +17,14 @@ export default (state = initialState, action) => {
         list: action.payload,
         triedLoading: true,
       };
+    }
+    case 'FAILED_LOAD_TRELLO_SHOPPING_LIST': {
+      return {
+        ...state,
+        loading: false,
+        triedLoading: true,
+        errorLoading: true,
+      }
     }
     default:
       return state;
