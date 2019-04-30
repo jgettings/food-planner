@@ -6,7 +6,7 @@ const loadingTrelloShoppingList = () => ({ type: 'LOADING_TRELLO_SHOPPING_LIST' 
 
 const loadedTrelloShoppingList = payload => ({ type: 'LOADED_TRELLO_SHOPPING_LIST', payload });
 
-const failedLoadTrelloShoppingList = error => ({ type: 'FAILED_LOAD_TRELLO_SHOPPING_LIST', error })
+const failedLoadTrelloShoppingList = error => ({ type: 'FAILED_LOAD_TRELLO_SHOPPING_LIST', error });
 
 export default checklistId => (dispatch) => {
   dispatch(loadingTrelloShoppingList());
