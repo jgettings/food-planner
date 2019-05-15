@@ -42,13 +42,15 @@ class ShoppingList extends Component {
       <Card>
         <Card.Header>Shopping List</Card.Header>
 
-        {loading &&
-          <Card.Body style={{ textAlign: "center" }}>
+        {loading
+          && (
+          <Card.Body style={{ textAlign: 'center' }}>
             <FontAwesomeIcon icon={faSpinner} spin transform="grow-30" />
           </Card.Body>
+          )
         }
         {!loading && !errorLoading && <List />}
-        {errorLoading && <Error message="We could not load the shopping list."/>}
+        {errorLoading && <Error message="We could not load the shopping list." />}
       </Card>
     );
   }

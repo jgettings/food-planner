@@ -21,11 +21,11 @@ const Error = ({ message }) => (
 );
 
 Error.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
 };
 
 Error.defaultProps = {
-  message: 'Something went wrong'
+  message: 'Something went wrong',
 };
 
 export default Error;
