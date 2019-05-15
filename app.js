@@ -9,4 +9,4 @@ const port = process.env.PORT || '8080';
 app.set('port', port);
 
 const server = http.createServer(app);
-server.listen(port, () => console.log(`Running on localhost:${port}`));
+server.listen(port, () => console.log(`Running on localhost:${port}`)); // eslint-disable-line no-console

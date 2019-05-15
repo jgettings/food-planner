@@ -1,5 +1,5 @@
 import {
-  createStore, applyMiddleware, combineReducers, compose
+  createStore, applyMiddleware, combineReducers, compose,
 } from 'redux';
 import thunk from 'redux-thunk';
 import trelloBoardLists from './listSelector/reducers';

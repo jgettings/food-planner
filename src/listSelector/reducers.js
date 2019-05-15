@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
       return { ...state, loading: false, list: action.payload };
     }
     case 'FAILED_LOADING_TRELLO_BOARD_LISTS': {
-      return { ...state, loading: false, errorLoading: true }; 
+      return { ...state, loading: false, errorLoading: true };
     }
     default:
       return state;

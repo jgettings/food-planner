@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         loading: false,
         triedLoading: true,
         errorLoading: true,
-      }
+      };
     }
     default:
       return state;
