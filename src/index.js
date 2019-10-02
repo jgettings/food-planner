@@ -1,11 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './js/components/App.js';
 
-ReactDOM.render(
-  <App />, // eslint-disable-line react/jsx-filename-extension
-  document.getElementById('root'),
-);
-
-registerServiceWorker();
+ReactDOM.render(<App/> , document.getElementById('app'));
