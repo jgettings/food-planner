@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.jsx',
+  entry: './src/js/index.jsx',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
@@ -13,12 +13,19 @@ module.exports = {
     overlay: true,
     port: 8081,
   },
-  module:{
+  module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svn)$/i,
+        loader: 'file-loader',
+        options: {
+          publicPath: './public',
+        },
       },
     ],
   },
