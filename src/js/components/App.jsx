@@ -4,7 +4,7 @@ import { ThemeProvider, makeStyles } from '@material-ui/styles';
 import theme from '../theme';
 import AppBar from './AppBar';
 import Calendar from './Calendar';
-import AddButton from './AddButton';
+import RecipeEditor from './RecipeEditor';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,7 +22,7 @@ export default () => {
         <CssBaseline />
         <AppBar />
         <Calendar />
-        <AddButton />
+        <RecipeEditor />
       </ThemeProvider>
     </div>
   );
