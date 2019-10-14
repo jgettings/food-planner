@@ -35,7 +35,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --useLocalIp --host 0.0.0.0 --hot --open --config webpack.dev.js",
-    "start": "webpack --config webpack.config.js & node server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
