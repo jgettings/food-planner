@@ -3,6 +3,11 @@
     "parser": "babel-eslint",
     "plugins": [
       "react-hooks",
-      "material-ui"
-    ]
+      "material-ui",
+      "mocha"
+    ],
+    "env": {
+      "browser": true,
+      "mocha": true
+    }
 }
