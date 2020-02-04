@@ -1,10 +1,16 @@
 {
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "plugin:chai-expect/recommended",
+      "plugin:chai-friendly/recommended"
+    ],
     "parser": "babel-eslint",
     "plugins": [
       "react-hooks",
       "material-ui",
-      "mocha"
+      "mocha",
+      "chai-expect",
+      "chai-friendly"
     ],
     "env": {
       "browser": true,
