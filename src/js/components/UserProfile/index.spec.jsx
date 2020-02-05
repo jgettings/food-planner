@@ -2,6 +2,8 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import SettingsIcon from '@material-ui/icons/Settings';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 import AppBar from '../AppBar';
 
 
@@ -17,63 +19,46 @@ describe('User Profile and Settings', () => {
   };
 
   let bar;
-  let button;
-  before(() => {
+  let avatarButton;
+  beforeEach(() => {
     bar = mount(<AppBar />);
-    button = bar.find('#user-settings button').first();
+    avatarButton = bar.find('#user-settings button').first();
   });
-  after(() => {
+  afterEach(() => {
     bar.unmount();
   });
 
   describe('When not logged in', () => {
     it('Will show a settings gear icon in the topbar', () => {
-      expect(button.length).to.not.equal(0);
-      expectIconToBeInElement(<SettingsIcon />, button);
+      expect(avatarButton.length).to.not.equal(0);
+      expectIconToBeInElement(<SettingsIcon />, avatarButton);
     });
   });
 
   xdescribe('When we have a gravatar login');
 
   describe('Settings Dialog', () => {
-    let dialog;
-    beforeEach(() => {
-      dialog = document.getElementById('user-settings-dialog');
-    });
+    const dialogIsOpen = () => bar.find(Dialog).prop('open');
     it('will not be open on load', () => {
-      expect(dialog.style.visibility).to.equal('hidden');
+      expect(dialogIsOpen()).to.be.false;
     });
     it('will open when the user avatar is clicked', () => {
-      button.simulate('click');
+      expect(dialogIsOpen()).to.be.false;
 
-      expect(dialog.style.visibility).to.not.equal('hidden');
+      avatarButton.simulate('click');
+
+      expect(dialogIsOpen()).to.be.true;
     });
-    xit('will close when the close button is clicked', () => {
-      expect(dialog.style.visibility).to.equal('hidden');
-      button.simulate('click');
-      expect(dialog.style.visibility).to.not.equal('hidden');
+    it('will close when the close button is clicked', () => {
+      // open via the avatar button and confirm that it is open
+      avatarButton.simulate('click');
+      expect(dialogIsOpen()).to.be.true;
 
-      // click the close button
-      // dialog.find('.close-button')
-      // const closeButton = bar.find('.close-button');
-      // closeButton.forEach((cb) => {
-      //   // console.log(cb.html());
-      //   cb.simulate('click'); // there are 5. This doesn't close it anyways.
-      // });
-      // closeButton.simulate('click'); // this isn't actually doing a click
-      // closeButton isn't the right element? maybe?
+      // Close the dialog
+      const closeButton = bar.find(Dialog).find(Button).filter('.close-button');
+      closeButton.simulate('click');
 
-      const closeButton = dialog.querySelectorAll('.close-button')[0];
-      // console.log(closeButton);
-      // closeButton.click();
-      console.log(window.Event);
-
-      const clickEvent = new window.Event('click', { bubbles: true, cancelable: false, composed: false });
-      closeButton.dispatchEvent(clickEvent);
-
-      const nowDialog = document.getElementById('user-settings-dialog');
-
-      expect(nowDialog.style.visibility).to.equal('hidden');
+      expect(dialogIsOpen()).to.be.false;
     });
   });
 });

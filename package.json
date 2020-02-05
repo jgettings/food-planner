@@ -47,7 +47,7 @@
     "start": "npm run test && node server.js",
     "heroku-postbuild": "webpack -p",
     "test": "mocha --reporter=nyan -r @babel/register -r testSetup.js src/**/*.spec.jsx",
-    "test:watch": "npm test -- -w"
+    "test:watch": "npm run test -- --watch --watch-files src/**/*"
   },
   "repository": {
     "type": "git",
