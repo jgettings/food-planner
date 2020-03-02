@@ -23,3 +23,4 @@ Webpack will automatically run the eslint checks and display any errors in the b
 
 When committing to master, the deployment on heroku will automatically rebuild itself.
 
+Pushing to master will automatically deploy to heroku https://team-awesome-food-planner.herokuapp.com/
