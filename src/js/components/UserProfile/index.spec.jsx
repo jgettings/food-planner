@@ -4,6 +4,8 @@ import { createMount } from '@material-ui/core/test-utils';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import md5 from 'md5';
 import localStorage from 'local-storage';
 import AppBar from '../AppBar';
 
@@ -49,12 +51,17 @@ describe('User Profile and Settings', () => {
 
   describe('When we have user information in local storage', () => {
     beforeEach(() => {
-      localStorage.set('user.email', 'other@email.place');
+      localStorage.set('user.email', 'other@Email.place ');
       bar = mount(<AppBar />);
       avatarButton = bar.find('#user-settings button').first();
     });
 
-    it('will display the user\'s gravatar instead of a settings gear in the topbar'); // gravatar
+    it('will display the user\'s gravatar instead of a settings gear in the topbar', () => {
+      expect(avatarButton.length).to.not.equal(0);
+
+      // trimmed and lowercased, md5-ed then gravatar link
+      expect(avatarButton.find('img').prop('src')).to.equal(`https://www.gravatar.com/avatar/${md5('other@email.place')}`);
+    });
 
     describe('Settings Dialog (when open)', () => {
       beforeEach(() => {
@@ -64,7 +71,7 @@ describe('User Profile and Settings', () => {
 
       it('will show the email address from localstorage', () => {
         const emailInput = bar.find('#user-email').first();
-        expect(emailInput.prop('value')).to.equal('other@email.place');
+        expect(emailInput.prop('value')).to.equal('other@Email.place ');
       });
 
       describe('Reset button', () => {
@@ -167,7 +174,9 @@ describe('User Profile and Settings', () => {
         expect(storedValue).to.equal('stuff@gmail.com');
       });
 
-      describe('user email update button', () => {
+      it('will submit the email form on enter');
+
+      describe('user email update button', () => { // TODO this isn't quite right
         it('will not be active on load', () => {
           const updateButton = settingsDialog().find('#update-user-email').first();
           expect(updateButton.prop('disabled')).to.be.true;

@@ -9,6 +9,7 @@ const exposedProperties = ['window', 'navigator', 'document'];
 global.window = new JSDOM('', { url: 'http://localhost' }).window;
 global.document = global.window.document;
 global.HTMLInputElement = window.HTMLInputElement;
+global.Image = window.Image;
 
 Object.keys(global.window).forEach((property) => {
   if (typeof global[property] === 'undefined') {

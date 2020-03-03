@@ -15,7 +15,8 @@ import ConfirmationAlert from './ConfirmationAlert';
 
 // TODO Break user email form into a separate component
 
-const SettingsDialog = ({ open, close }) => {
+
+const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
   const savedUserEmail = localStorage.get('user.email') || '';
   const [userEmail, setUserEmail] = useState(savedUserEmail);
   const [showResetConfirmation, setShowResetConfirmation] = useState(false);
@@ -23,6 +24,7 @@ const SettingsDialog = ({ open, close }) => {
 
   const updateUserEmailField = (value) => {
     setUserEmail(value);
+    onUserEmailUpdate(value);
     setUserEmailDirty(value !== savedUserEmail);
   };
 
@@ -37,6 +39,7 @@ const SettingsDialog = ({ open, close }) => {
     localStorage.clear();
     setUserEmail('');
     setUserEmailDirty(false);
+    onUserEmailUpdate('');
   };
 
   return (
@@ -110,6 +113,7 @@ const SettingsDialog = ({ open, close }) => {
 SettingsDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
+  onUserEmailUpdate: PropTypes.func.isRequired,
 };
 
 export default SettingsDialog;
