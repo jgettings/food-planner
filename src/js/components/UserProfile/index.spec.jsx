@@ -4,7 +4,6 @@ import { createMount } from '@material-ui/core/test-utils';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
 import md5 from 'md5';
 import localStorage from 'local-storage';
 import AppBar from '../AppBar';
@@ -175,6 +174,10 @@ describe('User Profile and Settings', () => {
       });
 
       it('will submit the email form on enter');
+
+      it('will let the user know the email was saved correctly');
+
+      it('will show an error message if something went wrong');
 
       describe('user email update button', () => { // TODO this isn't quite right
         it('will not be active on load', () => {

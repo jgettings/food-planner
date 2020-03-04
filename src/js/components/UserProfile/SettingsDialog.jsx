@@ -6,20 +6,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Email from '@material-ui/icons/Email';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import localStorage from 'local-storage';
 import DialogTransition from '../DialogTransition';
+import EmailForm from './EmailForm';
 import ConfirmationAlert from './ConfirmationAlert';
-
-// TODO Break user email form into a separate component
 
 
 const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
+  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
   const savedUserEmail = localStorage.get('user.email') || '';
   const [userEmail, setUserEmail] = useState(savedUserEmail);
-  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
   const [userEmailDirty, setUserEmailDirty] = useState(false);
 
   const updateUserEmailField = (value) => {
@@ -60,28 +56,12 @@ const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
             Currently we&apos;re just using localstorage to store your email address so that
             we can resolve your `gravatar` information, if applicable.
           </DialogContentText>
-          <form id="user-email-form" onSubmit={saveUserEmail}>
-            <TextField
-              id="user-email"
-              label="Email Address"
-              type="email"
-              name="user-email"
-              value={userEmail}
-              onChange={(e) => { updateUserEmailField(e.target.value); }}
-              required
-              helperText="The email address you use with gravatar for a generic profile"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Email />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button type="submit" color="primary" id="update-user-email" disabled={!userEmailDirty}>
-              Update
-            </Button>
-          </form>
+          <EmailForm
+            userEmail={userEmail}
+            userEmailDirty={userEmailDirty}
+            updateUserEmailField={updateUserEmailField}
+            saveUserEmail={saveUserEmail}
+          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -103,8 +83,8 @@ const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
       </Dialog>
       <ConfirmationAlert
         open={showResetConfirmation}
-        reset={resetSettings}
-        cancel={() => setShowResetConfirmation(false)}
+        onConfirm={resetSettings}
+        onCancel={() => setShowResetConfirmation(false)}
       />
     </div>
   );

@@ -22,30 +22,6 @@ global.navigator = {
   userAgent: 'node.js',
 };
 
-
-// function storageMock() {
-//   const storage = {};
-
-//   return {
-//     setItem: (key, value) => {
-//       storage[key] = value || '';
-//     },
-//     getItem: (key) => (key in storage ? storage[key] : null),
-//     removeItem: (key) => {
-//       delete storage[key];
-//     },
-//     get length() {
-//       return Object.keys(storage).length;
-//     },
-//     key: (i) => {
-//       const keys = Object.keys(storage);
-//       return keys[i] || null;
-//     },
-//   };
-// }
-// global.localStorage = storageMock();
-// global.sessionStorage = storageMock();
-
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 

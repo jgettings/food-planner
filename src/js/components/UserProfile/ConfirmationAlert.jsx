@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 
-const ConfirmationAlert = ({ open, cancel, reset }) => (
+const ConfirmationAlert = ({ open, onCancel, onConfirm }) => (
   <Dialog
     id="user-settings-confirmation-alert"
     open={open}
@@ -23,21 +23,21 @@ const ConfirmationAlert = ({ open, cancel, reset }) => (
     </DialogContent>
     <DialogActions>
       <Button
-        alt="Reset user settings"
-        className="reset-button"
-        color="primary"
-        onClick={reset}
-        autoFocus
-      >
-        Reset Settings
-      </Button>
-      <Button
         alt="Cancel settings reset"
-        onClick={cancel}
+        onClick={onCancel}
         color="secondary"
         className="close-button"
       >
         Cancel
+      </Button>
+      <Button
+        alt="Reset user settings"
+        className="reset-button"
+        color="primary"
+        onClick={onConfirm}
+        autoFocus
+      >
+        Reset Settings
       </Button>
     </DialogActions>
   </Dialog>
@@ -45,8 +45,8 @@ const ConfirmationAlert = ({ open, cancel, reset }) => (
 
 ConfirmationAlert.propTypes = {
   open: PropTypes.bool.isRequired,
-  cancel: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 };
 
 export default ConfirmationAlert;
