@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -6,36 +7,22 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import localStorage from 'local-storage';
+import { clear as clearLocalStorage } from 'redux-localstorage-simple';
 import DialogTransition from '../DialogTransition';
 import EmailForm from './EmailForm';
 import ConfirmationAlert from './ConfirmationAlert';
 
 
-const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
+const SettingsDialog = ({
+  open,
+  close,
+  clearProfile,
+}) => {
   const [showResetConfirmation, setShowResetConfirmation] = useState(false);
-  const savedUserEmail = localStorage.get('user.email') || '';
-  const [userEmail, setUserEmail] = useState(savedUserEmail);
-  const [userEmailDirty, setUserEmailDirty] = useState(false);
-
-  const updateUserEmailField = (value) => {
-    setUserEmail(value);
-    onUserEmailUpdate(value);
-    setUserEmailDirty(value !== savedUserEmail);
-  };
-
-  const saveUserEmail = (event) => {
-    event.preventDefault();
-    localStorage.set('user.email', userEmail);
-    return false;
-  };
 
   const resetSettings = () => {
     setShowResetConfirmation(false);
-    localStorage.clear();
-    setUserEmail('');
-    setUserEmailDirty(false);
-    onUserEmailUpdate('');
+    clearProfile();
   };
 
   return (
@@ -56,12 +43,7 @@ const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
             Currently we&apos;re just using localstorage to store your email address so that
             we can resolve your `gravatar` information, if applicable.
           </DialogContentText>
-          <EmailForm
-            userEmail={userEmail}
-            userEmailDirty={userEmailDirty}
-            updateUserEmailField={updateUserEmailField}
-            saveUserEmail={saveUserEmail}
-          />
+          <EmailForm />
         </DialogContent>
         <DialogActions>
           <Button
@@ -69,12 +51,12 @@ const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
             className="reset-button"
             onClick={() => setShowResetConfirmation(true)}
           >
-            Reset
+            Reset All
           </Button>
           <Button
             alt="Close settings dialog"
             onClick={close}
-            color="secondary"
+            color="primary"
             className="close-button"
           >
             Close
@@ -93,7 +75,14 @@ const SettingsDialog = ({ open, close, onUserEmailUpdate }) => {
 SettingsDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
-  onUserEmailUpdate: PropTypes.func.isRequired,
+  clearProfile: PropTypes.func.isRequired,
 };
 
-export default SettingsDialog;
+const mapDispatchToProps = (dispatch) => ({
+  clearProfile: () => {
+    dispatch({ type: 'CLEAR_USER_PROFILE' });
+    clearLocalStorage({ namespace: 'food_planner' });
+  },
+});
+
+export default connect(null, mapDispatchToProps)(SettingsDialog);

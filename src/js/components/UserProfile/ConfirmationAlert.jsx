@@ -32,7 +32,7 @@ const ConfirmationAlert = ({ open, onCancel, onConfirm }) => (
       </Button>
       <Button
         alt="Reset user settings"
-        className="reset-button"
+        className="confirm-button"
         color="primary"
         onClick={onConfirm}
         autoFocus
