@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const AddButton = ({ start }) => {
   const classes = useStyles();
 

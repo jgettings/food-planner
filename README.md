@@ -18,7 +18,7 @@ The best way to grab the html to import is to right click inside of the recipe b
 
 # Development
 
-To run this locally, do an npm install and then run the command `npm run dev`. It uses webpack locally and will open in a browser tab and update automatically on save.
+To run this locally, do an npm install and then run the command `yarn dev`. It uses webpack locally and will open in a browser tab and update automatically on save.
 Webpack will automatically run the eslint checks and display any errors in the browser (it will auto-fix anything that it can).
 
 When committing to master, the deployment on heroku will automatically rebuild itself.

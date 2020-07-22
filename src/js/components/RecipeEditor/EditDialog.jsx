@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import DialogTransition from '../DialogTransition';
 
-
 const EditDialog = ({
   open,
   url,
